@@ -1,0 +1,796 @@
+{
+	"info": {
+		"_postman_id": "7aed7653-6aff-4c0d-afe8-081cde1548ec",
+		"name": "AutomationExercise API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21896111"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get All Products List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is not empty\", function () {\r",
+									"    pm.expect(jsonData.products).to.not.have.lengthOf(0);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://automationexercise.com/api/productsList",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"productsList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post to All Products List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://automationexercise.com/api/productsList",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"productsList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST To Search Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "search_product",
+									"value": "jean",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/searchProduct",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"searchProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST To Search Product without search_product parameter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://automationexercise.com/api/searchProduct",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"searchProduct"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"item": [
+				{
+					"name": "Get All Brands List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"//we created at least one booking at the folder level, so there should always be bookings\r",
+									"pm.test(\"Response is not empty\", function () {\r",
+									"    // See Chaijs docs for complete list of available assertions\r",
+									"    // https://www.chaijs.com/api/bdd\r",
+									"    pm.expect(jsonData.brands).to.not.have.lengthOf(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/brandsList",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"brandsList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT to All Brands List",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://automationexercise.com/api/brandsList",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"brandsList"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "POST To Verify Login with valid details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "kiki@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/verifyLogin",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"verifyLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST To Verify Login without email parameter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/verifyLogin",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"verifyLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE To Verify Login",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://automationexercise.com/api/verifyLogin",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"verifyLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST To Verify Login with invalid details",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "fafa@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "fafa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/verifyLogin",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"verifyLogin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST To Create/Register User Account",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "{{$randomFirstName}}",
+									"contentType": "",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{$randomEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{$randomPassword}}",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "{{$randomNamePrefix}}",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"type": "file",
+									"src": "/C:/Users/Mahefa/Desktop/date.js"
+								},
+								{
+									"key": "birth_month",
+									"value": "01",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1992",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "{{name}}",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "{{$randomLastName}}",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "{{$randomCompanyName}}",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "{{$randomStreetAddress}}",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "{{$randomStreetAddress}}",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "India",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "{{$randomInt}}",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "{{$randomCity}}",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "{{$randomCity}}",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "55555555",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/createAccount",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"createAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE METHOD To Delete User Account",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "rakoto@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/deleteAccount",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"deleteAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Method to update user account",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Zafilahy",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{email}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Mr",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "birth_month",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1983",
+									"type": "text"
+								},
+								{
+									"key": "firstname",
+									"value": "jean",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Rakoto",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "cinema",
+									"type": "text"
+								},
+								{
+									"key": "address1",
+									"value": "14 avenue Foch",
+									"type": "text"
+								},
+								{
+									"key": "address2",
+									"value": "12 rue Du Veillard",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "India",
+									"type": "text"
+								},
+								{
+									"key": "zipcode",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Dombas",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Paris",
+									"type": "text"
+								},
+								{
+									"key": "mobile_number",
+									"value": "55555555",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/updateAccount",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"updateAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET user details by email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Content-Type header generated by Postman.",
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://automationexercise.com/api/getUserDetailByEmail?email={{email}}",
+							"protocol": "https",
+							"host": [
+								"automationexercise",
+								"com"
+							],
+							"path": [
+								"api",
+								"getUserDetailByEmail"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "{{email}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": "Julien",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "julien@email.com",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "1234",
+			"type": "string"
+		},
+		{
+			"key": "title",
+			"value": "Mr",
+			"type": "string"
+		},
+		{
+			"key": "birth_day",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "birth_month",
+			"value": "10",
+			"type": "string"
+		},
+		{
+			"key": "birth_year",
+			"value": "1983",
+			"type": "string"
+		},
+		{
+			"key": "first_name",
+			"value": "jean",
+			"type": "string"
+		},
+		{
+			"key": "last_name",
+			"value": "dujardin",
+			"type": "string"
+		},
+		{
+			"key": "company",
+			"value": "cinema",
+			"type": "string"
+		},
+		{
+			"key": "address1",
+			"value": "14 avenue Foch",
+			"type": "string"
+		},
+		{
+			"key": "address2",
+			"value": "12 rue Du Veillard",
+			"type": "string"
+		},
+		{
+			"key": "country",
+			"value": "India",
+			"type": "string"
+		},
+		{
+			"key": "state",
+			"value": "Dombas",
+			"type": "string"
+		},
+		{
+			"key": "city",
+			"value": "Paris",
+			"type": "string"
+		},
+		{
+			"key": "zipcode",
+			"value": "123",
+			"type": "string"
+		}
+	]
+}
