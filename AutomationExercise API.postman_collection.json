@@ -22,7 +22,7 @@
 									"    pm.expect(jsonData.products).to.not.have.lengthOf(0);\r",
 									"});\r",
 									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -54,7 +54,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -80,6 +84,21 @@
 				},
 				{
 					"name": "POST To Search Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -116,6 +135,21 @@
 				},
 				{
 					"name": "POST To Search Product without search_product parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -146,14 +180,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"\r",
 									"var jsonData = pm.response.json();\r",
 									"\r",
-									"//we created at least one booking at the folder level, so there should always be bookings\r",
 									"pm.test(\"Response is not empty\", function () {\r",
-									"    // See Chaijs docs for complete list of available assertions\r",
-									"    // https://www.chaijs.com/api/bdd\r",
 									"    pm.expect(jsonData.brands).to.not.have.lengthOf(0);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -192,6 +225,21 @@
 				},
 				{
 					"name": "PUT to All Brands List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -222,8 +270,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
 									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -277,6 +327,24 @@
 				},
 				{
 					"name": "POST To Verify Login without email parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response is not empty\", function () {\r",
+									"    pm.expect(jsonData.products).to.not.have.lengthOf(0);\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -313,6 +381,21 @@
 				},
 				{
 					"name": "DELETE To Verify Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.expect(jsonData.responseCode).equal(405);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -333,6 +416,21 @@
 				},
 				{
 					"name": "POST To Verify Login with invalid details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -370,16 +468,20 @@
 					"name": "POST To Create/Register User Account",
 					"event": [
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
 								"exec": [
-									""
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
 						},
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
 								"exec": [
 									""
@@ -547,6 +649,21 @@
 				},
 				{
 					"name": "PUT Method to update user account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -663,6 +780,25 @@
 				},
 				{
 					"name": "GET user details by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(jsonData.responseCode);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is not empty\", function () {\r",
+									"    pm.expect(jsonData.user.id).to.not.equals(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
